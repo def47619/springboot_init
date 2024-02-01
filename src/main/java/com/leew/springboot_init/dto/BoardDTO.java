@@ -1,5 +1,6 @@
 package com.leew.springboot_init.dto;
 
+import com.leew.springboot_init.entity.BoardEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,5 +34,21 @@ public class BoardDTO {
                 ", boardCreatedTime=" + boardCreatedTime +
                 ", boardUpdatedTime=" + boardUpdatedTime +
                 '}';
+    }
+
+    public static BoardDTO toBoardDTO(BoardEntity boardEntity) {
+        BoardDTO boardDTO = new BoardDTO();
+
+        // 옮겨담기
+        boardDTO.setId(boardEntity.getId());
+        boardDTO.setBoardWriter(boardEntity.getBoardWriter());
+        boardDTO.setBoardPass(boardEntity.getBoardPass());
+        boardDTO.setBoardTitle(boardEntity.getBoardWriter());
+        boardDTO.setBoardContents(boardEntity.getBoardContents());
+        boardDTO.setBoardHits(boardEntity.getBoardHits());
+        boardDTO.setBoardCreatedTime(boardEntity.getCreatedTime());
+        boardDTO.setBoardUpdatedTime(boardEntity.getUpdatedTime());
+
+        return boardDTO;
     }
 }
