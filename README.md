@@ -28,3 +28,19 @@ https://www.youtube.com/watch?v=RmSDa0nJd2o&list=PLV9zd3otBRt7jmXvwCkmvJ8dH5tR_2
 #### SpringBoot - MySQL(JPA)
 - https://pcm9881.tistory.com/130
 - https://nyximos.tistory.com/90
+
+#### @RequestMapping 
+- https://galid1.tistory.com/769
+- 사용자가 요청시 전달하는 값을 오브젝트 형태로 매핑해주는 Annotation
+
+#### JPA Entity Mapping 
+- https://data-make.tistory.com/610
+- https://walkingtechie.blogspot.com/2019/06/difference-between-entity-and-table.html
+- @Entity가 붙은 클래스는 JPA가 관리, Entity라고 불림 
+- @Table : Entity와 매핑할 테이블을 지정 
+- @SuperClass : Entity 간 상속 관련 
+  - https://velog.io/@choidongkuen/Spring-JPA-MappedSuperClass-%EB%9E%80-cdl2bl5d
+
+#### MySQL DB - JPA
+- https://junior-datalist.tistory.com/305
+- 초기 세팅 시, hibernate로 생성하여 DB 생성 안해도 된다. 
