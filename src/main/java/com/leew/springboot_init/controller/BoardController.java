@@ -6,10 +6,7 @@ import com.leew.springboot_init.service.BoardService;
 import org.springframework.ui.Model;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -40,6 +37,23 @@ public class BoardController {
         model.addAttribute("boardList", boardDTOList);
         // list html파일로 넘어간다.
         return "list";
+    }
+
+    @GetMapping("/{id}")
+    public String findById(@PathVariable("id") Long id, Model model) {
+        /*
+        2가지를 고민 해야 함
+        1. 해당 게시글의 조회 수를 하나 올리고,
+        2. 게시글 데이터를 가져 와서 detail.html에 출력
+         */
+
+        // 조회 수를 하나 올리고
+        boardService.updateHits(id);
+
+        // 게시글 데이터를 가져 와서, detail.html에 출력
+        BoardDTO boardDTO = boardService.findByID(id);
+        model.addAttribute("board", boardDTO);
+        return "detail";
     }
 
 }

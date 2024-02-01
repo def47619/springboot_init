@@ -3,11 +3,13 @@ package com.leew.springboot_init.service;
 import com.leew.springboot_init.dto.BoardDTO;
 import com.leew.springboot_init.entity.BoardEntity;
 import com.leew.springboot_init.repository.BoardRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -31,5 +33,23 @@ public class BoardService {
 
         // 옮겨 담은 리스트를 리턴해 준다.
         return boardDTOList;
+    }
+
+    @Transactional // JpaRepository를 상속한 인터페이스에 사용자가 추가로 구현한 메서드를 사용하는 경우에 Transactional Annotation을 넣어야 한다.
+    public void updateHits(Long id) {
+        // jpa가 제공하는 메서드는, select 조건, 정렬 등,,, 쿼리가 자동으로 만들어지는 형태
+        // 특수한 목적을 가진 쿼리들은, 따로 정의할 필요가 있다. DB를 기준으로 직접 query 정의
+        // "update board_table set board_hits = (board_hits) + 1 where id = ?" -> BoardRepository에서 정의
+        boardRepository.updateHits(id);
+    }
+
+    public BoardDTO findByID(Long id) {
+        Optional<BoardEntity> optionalBoardEntity = boardRepository.findById(id);
+        if (optionalBoardEntity.isPresent()) {
+            BoardEntity boardEntity = optionalBoardEntity.get();
+            return BoardDTO.toBoardDTO(boardEntity);
+        } else {
+            return null;
+        }
     }
 }
