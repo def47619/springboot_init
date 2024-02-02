@@ -56,4 +56,21 @@ public class BoardController {
         return "detail";
     }
 
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable("id") Long id, Model model) {
+        /*
+        해당 게시글의 정보를 먼저 갖고 오기
+         */
+        BoardDTO boardDTO = boardService.findByID(id);
+        model.addAttribute("boardUpdate", boardDTO);
+        return "update";
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute BoardDTO boardDTO, Model model) {
+        BoardDTO board = boardService.update(boardDTO);
+        model.addAttribute("board", board); // detail 페이지의 내용을 Model에 전달
+        return "detail"; // 해당 변경된 내용을 가진 상세 페이지로 다시 이동
+        // return "redirect:/board/" + boardDTO.getId(); // 리디렉션을 해도 되지만, 수정을 해도 조회수가 1 늘어나는 작동을 막기 위해
+    }
 }

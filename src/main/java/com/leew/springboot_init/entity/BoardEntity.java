@@ -44,4 +44,17 @@ public class BoardEntity extends BaseEntity {
         boardEntity.setBoardHits(0); // default hits 값은 0이다.
         return boardEntity;
     }
+
+    public static BoardEntity toUpdateEntity(BoardDTO boardDTO) {
+        BoardEntity boardEntity = new BoardEntity();
+        boardEntity.setId(boardDTO.getId());
+        // ID가 있는 값을 update하는 것이기 때문에, id를 가져와서 저장해야 한다. 아니면, auto-increment로 새 값으로 insert됨
+
+        boardEntity.setBoardWriter(boardDTO.getBoardWriter());
+        boardEntity.setBoardPass(boardDTO.getBoardPass());
+        boardEntity.setBoardTitle(boardDTO.getBoardTitle());
+        boardEntity.setBoardContents(boardDTO.getBoardContents());
+        boardEntity.setBoardHits(0); // default hits 값은 0이다.
+        return boardEntity;
+    }
 }

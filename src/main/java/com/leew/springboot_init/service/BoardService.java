@@ -52,4 +52,18 @@ public class BoardService {
             return null;
         }
     }
+
+    public BoardDTO update(BoardDTO boardDTO) {
+        /*
+        boardRepository에 update를 위한 별도의 함수를 제공하지는 않는다.
+        save 메소드로 update도 하고, insert도 한다.
+        insert <-> save 기능을 구별하는 방식 : id가 있느냐 없느냐 // 있다면 update를 하는 방식으로 JPA가 작동
+
+        */
+        BoardEntity boardEntity = BoardEntity.toUpdateEntity(boardDTO); // update를 위한 메소드를 호출
+        boardRepository.save(boardEntity); // Entity를 DB로 전달해야 DB의 값으로 저장됨
+
+        // 상세 조회 값을 넘겨줘야 하기 때문에(리턴 값이 BoardDTO이다.)
+        return findByID(boardDTO.getId()); // 위 findByID 함수 호출하여, 다시 상세 페이지에 담기 위한 객체를 담는다.
+    }
 }
