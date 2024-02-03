@@ -66,4 +66,9 @@ public class BoardService {
         // 상세 조회 값을 넘겨줘야 하기 때문에(리턴 값이 BoardDTO이다.)
         return findByID(boardDTO.getId()); // 위 findByID 함수 호출하여, 다시 상세 페이지에 담기 위한 객체를 담는다.
     }
+
+    public void delete(Long id) {
+        boardRepository.deleteById(id);
+        // JPA 인터페이스에 deleteById 함수가 구현되어 있음
+    }
 }

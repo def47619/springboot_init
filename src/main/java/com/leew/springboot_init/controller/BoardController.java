@@ -73,4 +73,13 @@ public class BoardController {
         return "detail"; // 해당 변경된 내용을 가진 상세 페이지로 다시 이동
         // return "redirect:/board/" + boardDTO.getId(); // 리디렉션을 해도 되지만, 수정을 해도 조회수가 1 늘어나는 작동을 막기 위해
     }
+
+    @PostMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id) {
+        // 기능 1 : 삭제한다. (BoardService에 삭제 기능 구현)
+        boardService.delete(id);
+
+        // 기능 2 : 완료하면, 리디렉션 처리 - 해당 상세 페이지를 더 이상 볼 수 없으니, 목록 페이지로 이동
+        return "redirect:/board/";
+    }
 }

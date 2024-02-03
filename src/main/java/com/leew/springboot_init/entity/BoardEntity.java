@@ -54,7 +54,7 @@ public class BoardEntity extends BaseEntity {
         boardEntity.setBoardPass(boardDTO.getBoardPass());
         boardEntity.setBoardTitle(boardDTO.getBoardTitle());
         boardEntity.setBoardContents(boardDTO.getBoardContents());
-        boardEntity.setBoardHits(0); // default hits 값은 0이다.
+        boardEntity.setBoardHits(boardDTO.getBoardHits()); // default hits 값은 0이다.
         return boardEntity;
     }
 }
